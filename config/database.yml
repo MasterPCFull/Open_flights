@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: italo
+  password: italo123
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: open_flights_development
+
+test:
+  <<: *default
+  database: open_flights_test
+
+production:
+  <<: *default
+  database: open_flights_production
+  username: open_flights
+  password: <%= ENV['OPEN_FLIGHTS_DATABASE_PASSWORD'] %>
